@@ -56,6 +56,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, "/like").hasAnyRole(ROLE_USER.getRoleName(), ROLE_ADMIN.getRoleName())
                 .antMatchers(HttpMethod.GET, "/professor", "/professor/*", "/professor/*/*").permitAll()
                 .antMatchers(HttpMethod.POST, "/professor").hasAnyRole(ROLE_USER.getRoleName(), ROLE_ADMIN.getRoleName())
+                .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
