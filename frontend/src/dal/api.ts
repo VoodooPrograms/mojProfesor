@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const api = axios.create({
-    baseURL: `/`,
+    baseURL: `https://moj-profesor-api.herokuapp.com`,
 });
 
 api.interceptors.response.use(
