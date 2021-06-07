@@ -47,11 +47,11 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
 
         for (String header : headers) {
             if (firstHeader) {
-                response.setHeader(HttpHeaders.SET_COOKIE, String.format("%s; %s", header, "SameSite=None"));
+                response.setHeader(HttpHeaders.SET_COOKIE, String.format("%s; %s; %s", header, "SameSite=None", "Secure=true"));
                 firstHeader = false;
                 continue;
             }
-            response.addHeader(HttpHeaders.SET_COOKIE, String.format("%s; %s", header, "SameSite=None"));
+            response.addHeader(HttpHeaders.SET_COOKIE, String.format("%s; %s; %s", header, "SameSite=None", "Secure=true"));
         }
         
         filterChain.doFilter(request, response);
