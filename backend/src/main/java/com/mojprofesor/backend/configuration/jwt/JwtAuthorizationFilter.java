@@ -39,6 +39,7 @@ public class JwtAuthorizationFilter extends BasicAuthenticationFilter {
             return;
         }
         SecurityContextHolder.getContext().setAuthentication(authentication);
+        response.setHeader("Set-Cookie", "SameSite=None");
         filterChain.doFilter(request, response);
     }
 
