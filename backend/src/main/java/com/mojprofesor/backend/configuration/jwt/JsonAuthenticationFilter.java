@@ -32,6 +32,7 @@ public class JsonAuthenticationFilter extends UsernamePasswordAuthenticationFilt
                     authRequest.getEmail(), authRequest.getPassword()
             );
             setDetails(request, token);
+            response.setHeader("Set-Cookie", "SameSite=None");
             return this.getAuthenticationManager().authenticate(token);
         } catch (IOException e) {
             throw new IllegalArgumentException(e.getMessage());
