@@ -2,6 +2,7 @@ import axios from 'axios';
 
 export const api = axios.create({
     baseURL: `https://moj-profesor-api.herokuapp.com`,
+    withCredentials: true
 });
 
 api.interceptors.response.use(
