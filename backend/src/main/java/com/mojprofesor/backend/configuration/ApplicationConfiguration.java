@@ -23,7 +23,7 @@ public class ApplicationConfiguration {
         config.setAllowedOriginPatterns(Collections.singletonList("*"));
         config.setAllowedHeaders(Arrays.asList("*"));
         config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "OPTIONS", "DELETE", "PATCH"));
-        config.setExposedHeaders(Arrays.asList("*"));
+        config.setExposedHeaders(Arrays.asList("Set-Cookie"));
         source.registerCorsConfiguration("/**", config);
         return new CorsFilter(source);
     }
