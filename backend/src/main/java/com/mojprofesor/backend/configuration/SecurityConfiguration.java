@@ -44,7 +44,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable();
+        http.cors().and().csrf().disable();
         http
                 .authorizeRequests()
                 .antMatchers("/swagger-resources/**", "/v2/api-docs", "/swagger-ui/**", "/webjars/**").permitAll()
@@ -62,7 +62,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
                 .and()
-                .addFilter(authenticationFilter())
+                .addFilterAfter(authenticationFilter(), CorsFilter.class)
                 .addFilterAfter(new JwtAuthorizationFilter(authenticationManager(), authService, secret), CorsFilter.class)
                 .exceptionHandling()
                 .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED))
